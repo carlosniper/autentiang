@@ -1,0 +1,54 @@
+<div class="card my-5">
+  <div class="card-body">
+    <form (ngSubmit)="onSubmit()" #cursoForm="ngForm">
+      <div class="form-group">
+        <label for="titulo">Titulo</label>
+        <input type="text" [(ngModel)]="curso.titulo" 
+          class="form-control"
+          id="titulo"
+          name="titulo"
+          placeholder="Introduzca el titulo del curso"
+          required #titulo="ngModel">
+      </div>
+      <!--<div [hidden]="!titulo.pristine" class="alert alert-danger">El titulo del curso es obligatorio</div>-->
+      <div class="form-group form-check">
+				<input type="checkbox" [(ngModel)]="curso.activo" 
+					class="form-check-input"
+          id="activo"
+          name="activo">
+        <label class="form-check-label" for="activo">Activo</label>
+      </div>
+			<div class="form-group">
+				<label for="horas">Horas</label>
+				<input type="number" [(ngModel)]="curso.horas"
+					class="form-control"
+					id="horas"
+					name="horas">
+			</div>
+			<div class="form-group">
+				<label for="id_profesor">Profesor</label>
+				<select [(ngModel)]="curso.id_profesor"
+					class="form-control"
+					id="id_profesor"
+					name="id_profesor">
+					<option value="0"> -- Profesor -- </option>	
+					<option *ngFor="let profesor of profesores" value="{{profesor.id}}"> {{ profesor.nombre }} </option>
+				</select>
+			</div>
+			<div class="form-group">
+				<label for="nivel">Nivel</label>
+				<select [(ngModel)]="curso.nivel"
+					class="form-control"
+					id="nivel"
+					name="nivel">
+						<option value="BASICO">BASICO</option>
+						<option value="INTERMEDIO">INTERMEDIO</option>
+						<option value="AVANZADO">AVANZADO</option>
+				</select>
+			</div>
+			
+      <button type="submit" [disabled]="!cursoForm.form.valid" 
+        class="btn btn-info">Crear curso</button>
+    </form>
+  </div>
+</div>
